@@ -1,0 +1,14 @@
+<div ng-messages="vm.user.error">
+    <div class="alert alert-warning" ng-message="non_field_errors">
+        <a class="close" ng-click="vm.user.error = ''" aria-label="close">&times;</a>
+        {{ vm.user.error.non_field_errors[0] }}
+    </div>
+</div>
+<form ng-submit="vm.login(vm.user)" class="form-signin">
+	<div class="registration_form">
+	    <h2 class="form-signin-heading">Login</h2>
+	    <input ng-model="vm.user.username" type="text" class="form-control" placeholder="Username" name="username" required autofocus>
+	    <input ng-model="vm.user.password" type="password" class="form-control" placeholder="Password" name="password" required>
+	    <button class="btn btn-lg btn-success btn-block btn-login" type="submit">Login</button>
+	</form>
+</form>

@@ -1,0 +1,16 @@
+<div class="jumbotron">
+    <div class="container" ng-controller="AuthController as vm">
+        <div ng-if="!vm.isLoggedIn()">
+            <h1>Welcome to <i>Good Reads!</i></h1>
+            <p><a class="btn btn-primary btn-lg" href="#/register/" role="button">Register! &raquo;</a></p>
+        </div>
+
+        <div ng-if="vm.isLoggedIn()">
+            <h1>Welcome <i>{{ vm.$storage.username }}</i></h1>
+            <p>You're already logged in! <strong>Why don't you go and checkout your books?</strong></p>
+            <p><a class="btn btn-primary btn-lg" href="#/books/" role="button">Check books! &raquo;</a></p>
+        </div>
+
+    </div>
+</div>
+

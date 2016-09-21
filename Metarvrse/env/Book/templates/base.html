@@ -1,0 +1,81 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <title>Books</title>
+        <meta charset="utf-8" />
+
+        <!--Third-party JS-->
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular-route.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.5.3/angular-resource.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-messages/1.5.5/angular-messages.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
+        <script src="{% static 'js/angular-clipboard/angular-clipboard.js' %}"></script>
+
+        <!-- Custom files -->
+        <script src="{% static 'js/app.module.js' %}"></script>
+        <script src="{% static 'js/app.config.js' %}"></script>
+        <!-- Auth -->
+        <script src="{% static 'js/auth/auth.module.js' %}"></script>
+        <script src="{% static 'js/auth/config.route.js' %}"></script>
+        <script src="{% static 'js/auth/auth.service.js' %}"></script>
+        <script src="{% static 'js/auth/auth.controller.js' %}"></script>
+        <!-- Core -->
+        <script src="{% static 'js/core/core.module.js' %}"></script>
+        <script src="{% static 'js/core/constants.js' %}"></script>
+        <!-- books -->
+        <script src="{% static 'js/books/books.module.js' %}"></script>
+        <script src="{% static 'js/books/config.route.js' %}"></script>
+        <script src="{% static 'js/books/books.controller.js' %}"></script>
+        <script src="{% static 'js/books/books.service.js' %}"></script>
+        <!-- Home -->
+        <script src="{% static 'js/home/home.module.js' %}"></script>
+        <script src="{% static 'js/home/config.route.js' %}"></script>
+        <!-- Notify -->
+        <script src="{% static 'js/notify/notify.module.js' %}"></script>
+        <script src="{% static 'js/notify/notify.controller.js' %}"></script>
+        <script src="{% static 'js/notify/notify.service.js' %}"></script>
+        
+        <!-- third_party css -->
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/book.css' %}">
+
+    </head>
+    <body>
+        <nav ng-controller="AuthController as vm" class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#/">Finding The Best Online Books</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#/login" ng-hide="vm.isLoggedIn()">Log in</a></li>
+                        <li><a href="" ng-click="vm.logout()" ng-show="vm.isLoggedIn()">Welcome <span style="color:green;">{{request.user.username|title}}</span> &nbsp;&nbsp;<i class="fa fa-power-off"></i></a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+
+        <div class="container" ng-controller="NotifyController as vm">
+            <div class="alert alert-success" ng-show="vm.notifyService.showMessage">
+                <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong ng-bind="vm.notifyService.message"></strong>
+            </div>
+        </div>
+
+        <div ng-view class="container"></div>
+
+    </body>
+</html>
